@@ -1,0 +1,17 @@
+{
+    "name": "blog-post_fastify",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "start:dev": "node --watch server.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "dependencies": {
+        "@fastify/env": "^5.0.2",
+        "fastify": "^5.4.0"
+    }
+}
