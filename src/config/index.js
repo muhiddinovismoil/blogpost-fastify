@@ -8,7 +8,7 @@ export const schema = {
         },
         DB_URL: {
             type: "string",
-            default: "postgresql://postgres:1111@127.0.0.1:5432/postgres",
+            // default: "",
         },
     },
 };
