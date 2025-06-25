@@ -8,7 +8,6 @@ export const schema = {
         },
         DB_URL: {
             type: "string",
-            // default: "",
         },
     },
 };
@@ -16,4 +15,5 @@ export const schema = {
 export const options = {
     confKey: "config",
     schema: schema,
+    dotenv: true,
 };
