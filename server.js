@@ -3,7 +3,16 @@ import fastifyEnv from "@fastify/env";
 import { options } from "./src/config/index.js";
 
 const app = Fastify({
-    logger: true,
+    logger: {
+        transport: {
+            target: "pino-pretty",
+            options: {
+                translateTime: "SYS:standard",
+                ignore: "pid,hostname",
+                colorize: true,
+            },
+        },
+    },
 });
 
 await app.register(fastifyEnv, options);
