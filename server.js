@@ -9,5 +9,5 @@ app.listen({ port: app.config.PORT }, function (err, addr) {
         app.log.error(err);
         process.exit(1);
     }
-    app.log.info(`SWAGGER IS ON: http://127.0.0.1:${app.config.PORT}/api/docs`);
+    app.log.info(`Swagger is at: http://127.0.0.1:${app.config.PORT}/api/docs`);
 });
