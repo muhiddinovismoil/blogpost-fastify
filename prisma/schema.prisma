@@ -6,10 +6,42 @@
 
 generator client {
   provider = "prisma-client-js"
-  // output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Users {
+  id       String @default(dbgenerated("GEN_RANDOM_UUID()")) @map("id") @db.Uuid
+  fullName String @map("fullname") @db.VarChar(24)
+  email    String @unique @map("email")
+  password String @map("password")
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp
+
+  blogs Blogs[]
+
+  @@id([id])
+  @@map("users")
+}
+
+model Blogs {
+  id       String @default(dbgenerated("GEN_RANDOM_UUID()")) @map("id") @db.Uuid
+  title    String @map("title")
+  subTitle String @map("sub_title")
+  media    String @map("media")
+  userId   String @map("user_id") @db.Uuid
+
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamp
+  updatedAt  DateTime  @updatedAt @map("updated_at") @db.Timestamp
+  deletedAt  DateTime? @map("deleted_at") @db.Timestamp
+  archivedAt DateTime? @map("archived_at") @db.Timestamp
+
+  user Users? @relation(fields: [userId], references: [id])
+
+  @@id([id])
+  @@map("blogs")
 }

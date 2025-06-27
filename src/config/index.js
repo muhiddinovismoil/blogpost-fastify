@@ -1,12 +1,12 @@
 export const schema = {
     type: "object",
-    required: ["PORT", "DB_URL"],
+    required: ["PORT", "DATABASE_URL"],
     properties: {
         PORT: {
             type: "string",
             default: 3000,
         },
-        DB_URL: {
+        DATABASE_URL: {
             type: "string",
         },
     },

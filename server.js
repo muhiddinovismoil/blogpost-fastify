@@ -13,5 +13,4 @@ app.listen({ port: app.config.PORT }, function (err, addr) {
         app.log.error(err);
         process.exit(1);
     }
-    app.log.info(`SERVER IS RUNNING ON PORT: ${app.config.PORT}`);
 });

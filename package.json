@@ -12,6 +12,7 @@
     "type": "module",
     "dependencies": {
         "@fastify/env": "^5.0.2",
+        "bcryptjs": "^3.0.2",
         "fastify": "^5.4.0"
     }
 }
