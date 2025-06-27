@@ -17,3 +17,6 @@ export const options = {
     schema: schema,
     dotenv: true,
 };
+// exporting other config files
+export * from "./swagger.js";
+export * from "./pino-logs.js";

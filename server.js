@@ -1,19 +1,6 @@
-import Fastify from "fastify";
+import app from "./src/app.js";
 import fastifyEnv from "@fastify/env";
 import { options } from "./src/config/index.js";
-
-const app = Fastify({
-    logger: {
-        transport: {
-            target: "pino-pretty",
-            options: {
-                translateTime: "SYS:standard",
-                ignore: "pid,hostname",
-                colorize: true,
-            },
-        },
-    },
-});
 
 await app.register(fastifyEnv, options);
 
@@ -22,4 +9,5 @@ app.listen({ port: app.config.PORT }, function (err, addr) {
         app.log.error(err);
         process.exit(1);
     }
+    app.log.info(`SWAGGER IS ON: http://127.0.0.1:${app.config.PORT}/api/docs`);
 });
