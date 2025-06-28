@@ -14,10 +14,11 @@ datasource db {
 }
 
 model Users {
-  id       String @default(dbgenerated("GEN_RANDOM_UUID()")) @map("id") @db.Uuid
-  fullName String @map("fullname") @db.VarChar(24)
-  email    String @unique @map("email")
-  password String @map("password")
+  id       String  @default(dbgenerated("GEN_RANDOM_UUID()")) @map("id") @db.Uuid
+  fullName String? @map("fullname") @db.VarChar(24)
+  photo    String? @map("photo")
+  email    String  @unique @map("email")
+  password String  @map("password")
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamp
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp
