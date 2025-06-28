@@ -1,4 +1,4 @@
-export default async function (fastify, opts) {
+export default async function BlogRoutes(fastify, opts) {
   fastify.get('/');
   fastify.get('/:id');
   fastify.post('/');

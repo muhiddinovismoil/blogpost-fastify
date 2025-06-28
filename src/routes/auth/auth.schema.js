@@ -3,10 +3,14 @@
 //
 export const registerUserSchema = {
   body: {
+    schema: {
+      tags: ['Auth API'],
+      summary: 'User registration API',
+    },
     type: 'object',
     required: ['email', 'password'],
     properties: {
-      fullname: { type: string },
+      fullname: { type: 'string' },
       email: { type: 'string', pattern: '^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$' },
       password: { type: 'string', minLength: 8 },
     },
@@ -26,7 +30,7 @@ export const registerUserSchema = {
           type: 'integer',
           default: 400,
         },
-        message: { type: 'string' },
+        message: { type: 'string', default: 'Bad Request' },
       },
     },
     500: {
@@ -36,7 +40,7 @@ export const registerUserSchema = {
           type: 'integer',
           default: 500,
         },
-        message: { type: 'string' },
+        message: { type: 'string', default: 'Interval Server Error' },
       },
     },
   },
@@ -46,6 +50,10 @@ export const registerUserSchema = {
 //
 export const loginUserSchema = {
   body: {
+    schema: {
+      tags: ['Auth API'],
+      summary: 'User login API',
+    },
     type: 'object',
     required: ['email', 'password'],
     properties: {

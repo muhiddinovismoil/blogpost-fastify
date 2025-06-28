@@ -1,14 +1,23 @@
-import * as authService from '../../services/index.js';
+import { AuthService } from '../../services/index.js';
 
-export async function registerUser(payload) {
+const authService = new AuthService();
+
+export async function registerUser(req, res) {
   try {
-  } catch (error) {}
+    const data = await authService.signup(req.server.prisma, req.body);
+    if (data.statusCode == 400) {
+      return res.status(data.statusCode).send(data);
+    }
+    res.status(data.statusCode).send(data);
+  } catch (error) {
+    return error.message;
+  }
 }
-export async function loginUser(payload) {
+
+export async function loginUser(req, res) {
   try {
-  } catch (error) {}
-}
-export async function getMe(payload) {
-  try {
-  } catch (error) {}
+    const data = await authService.signin(req.server.prisma, req.body);
+  } catch (error) {
+    return error.message;
+  }
 }
