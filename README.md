@@ -1,5 +1,3 @@
-# Blog Post Fastify
-
 <h1 align="center">🚀 Blog Post Fastify</h1>
 <p align="center">
     <b>A blazing fast, minimal, and extensible blog post API built with <a href="https://www.fastify.io/">Fastify</a>.</b>
