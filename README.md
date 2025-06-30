@@ -46,3 +46,36 @@ npm install
 ```
 npm run start
 ```
+
+# For development
+
+```
+npm run start:dev
+```
+
+# 🗂 Project Structure
+
+```
+blog-post_fastify/
+├── src/
+│   ├── controllers/
+│   ├── routes/
+│   ├── services/
+│   ├── plugins/
+│   └── index.js
+├── prisma/                # If you're using Prisma
+├── .env
+├── LICENSE
+├── package.json
+└── README.md
+
+```
+
+🛠 Tech Stack
+🚀 Fastify – Fast and low-overhead Node.js framework
+
+📦 JavaScript – ES6+ syntax and modular structure
+
+🔐 (Optional) JWT Authentication
+
+🗃️ (Optional) Prisma ORM
