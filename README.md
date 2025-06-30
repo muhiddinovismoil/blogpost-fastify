@@ -1,7 +1,7 @@
 <h1 align="center">🚀 Blog Post API with Fastify</h1>
 <p align="center">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnghs0C7vUwiwTkkQQ1Qxda8XIpBQ5oziGqw&s" alt="Fastify Badge" />
   <img src="https://img.shields.io/badge/JavaScript-ES6+-yellow?style=flat-square" alt="JavaScript Badge" />
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnghs0C7vUwiwTkkQQ1Qxda8XIpBQ5oziGqw&s" alt="Fastify Badge" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License Badge" />
 </p>
 
@@ -79,3 +79,8 @@ blog-post_fastify/
 🔐 (Optional) JWT Authentication
 
 🗃️ (Optional) Prisma ORM
+
+📄 License
+Licensed under the MIT License.
+
+<p align="center"> <sub>Made with ❤️ by <a href="https://fastify.io/">Fastify</a> and maintained by @muhiddinovismoil</sub> </p>
