@@ -1,20 +1,20 @@
-export async function getAll(params) {
+export async function getAll() {
   try {
   } catch (error) {}
 }
-export async function getBlogsById(params) {
+export async function getBlogsById() {
   try {
   } catch (error) {}
 }
-export async function createBlogs(params) {
+export async function createBlogs() {
   try {
   } catch (error) {}
 }
-export async function updateBlogs(params) {
+export async function updateBlogs() {
   try {
   } catch (error) {}
 }
-export async function deleteBlogs(params) {
+export async function deleteBlogs() {
   try {
   } catch (error) {}
 }
