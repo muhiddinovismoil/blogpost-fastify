@@ -1,4 +1,4 @@
-export async function uploadFile() {
+export async function uploadFile(prisma, payload) {
   try {
   } catch (error) {}
 }
