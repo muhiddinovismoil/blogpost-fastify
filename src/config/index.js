@@ -1,12 +1,35 @@
 export const schema = {
   type: 'object',
-  required: ['PORT', 'DATABASE_URL'],
+  required: [
+    'PORT',
+    'DATABASE_URL',
+    'JWT_ACCESS_SECRET',
+    'JWT_REFRESH_SECRET',
+    'JWT_ACCESS_TIME',
+    'JWT_REFRESH_TIME',
+    'GMAIL_APP_PASS',
+  ],
   properties: {
     PORT: {
       type: 'string',
       default: 3000,
     },
     DATABASE_URL: {
+      type: 'string',
+    },
+    JWT_ACCESS_SECRET: {
+      type: 'string',
+    },
+    JWT_REFRESH_SECRET: {
+      type: 'string',
+    },
+    JWT_ACCESS_TIME: {
+      type: 'string',
+    },
+    JWT_REFRESH_TIME: {
+      type: 'string',
+    },
+    GMAIL_APP_PASS: {
       type: 'string',
     },
   },

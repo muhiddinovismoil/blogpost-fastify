@@ -7,8 +7,24 @@ export const swaggerMainConf = {
     },
     consumes: ['application/json'],
     produces: ['application/json'],
+
+    securityDefinitions: {
+      bearerAuth: {
+        type: 'apiKey',
+        name: 'Authorization',
+        in: 'header',
+        description: 'Enter JWT token like this: **Bearer &lt;your-token&gt;**',
+      },
+    },
+
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
 };
+
 export const swaggerExtraConf = {
   routePrefix: '/api/docs',
   uiConfig: {
