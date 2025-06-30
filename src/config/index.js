@@ -8,6 +8,7 @@ export const schema = {
     'JWT_ACCESS_TIME',
     'JWT_REFRESH_TIME',
     'GMAIL_APP_PASS',
+    'GMAIL',
   ],
   properties: {
     PORT: {
@@ -30,6 +31,9 @@ export const schema = {
       type: 'string',
     },
     GMAIL_APP_PASS: {
+      type: 'string',
+    },
+    GMAIL: {
       type: 'string',
     },
   },
