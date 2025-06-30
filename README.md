@@ -1,6 +1,6 @@
 <h1 align="center">🚀 Blog Post API with Fastify</h1>
 <p align="center">
-  <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ficonduck.com%2Ficons%2F80432%2Ffastify&psig=AOvVaw3qJn6Xl9PbnWa8eMLx5jiZ&ust=1751396439366000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLjyyKbqmY4DFQAAAAAdAAAAABAE" alt="Fastify Badge" />
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnghs0C7vUwiwTkkQQ1Qxda8XIpBQ5oziGqw&s" alt="Fastify Badge" />
   <img src="https://img.shields.io/badge/JavaScript-ES6+-yellow?style=flat-square" alt="JavaScript Badge" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License Badge" />
 </p>
