@@ -78,8 +78,6 @@ npm run start:dev
     │   ├── file.controller.js
     │   ├── index.js
     │   └── user.controller.js
-    ├── middleware/
-    │   └── index.js
     ├── plugins/
     │   ├── db.js
     │   └── nodemailer.js
