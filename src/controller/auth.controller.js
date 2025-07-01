@@ -51,7 +51,6 @@ export async function signInUser(req, res) {
                 message: error.message,
             });
         }
-        console.log(error);
         return res
             .status(500)
             .send({ statusCode: 500, message: error.message });

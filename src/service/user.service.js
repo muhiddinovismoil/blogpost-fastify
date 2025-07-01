@@ -48,7 +48,13 @@ export async function loginUser(server, payload) {
             expiresIn: process.env.JWT_SECRET_TIME,
         };
     } catch (error) {
-        console.log(error);
+        throw new Error(error.message);
+    }
+}
+
+export async function sendOtp() {
+    try {
+    } catch (error) {
         throw new Error(error.message);
     }
 }

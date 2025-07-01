@@ -24,6 +24,7 @@ model Users {
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp
 
   blogs Blogs[]
+  Otp   Otp[]
 
   @@id([id])
   @@map("users")
@@ -45,4 +46,19 @@ model Blogs {
 
   @@id([id])
   @@map("blogs")
+}
+
+model Otp {
+  id        String   @default(dbgenerated("GEN_RANDOM_UUID()")) @map("id") @db.Uuid
+  code      String   @map("code")
+  expiresAt DateTime @map("expires_at") @db.Timestamp
+  is_used   Boolean? @default(false) @map("is_used")
+  userId    String   @map("user_id") @db.Uuid
+
+  user Users @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp
+
+  @@id([id])
+  @@map("otp")
 }
