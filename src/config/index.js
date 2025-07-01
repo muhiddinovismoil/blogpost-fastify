@@ -3,10 +3,8 @@ export const schema = {
     required: [
         'PORT',
         'DATABASE_URL',
-        'JWT_ACCESS_SECRET',
-        'JWT_REFRESH_SECRET',
-        'JWT_ACCESS_TIME',
-        'JWT_REFRESH_TIME',
+        'JWT_SECRET',
+        'JWT_SECRET_TIME',
         'GMAIL_APP_PASS',
         'GMAIL',
     ],

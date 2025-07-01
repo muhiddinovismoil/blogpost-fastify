@@ -20,27 +20,9 @@ export const LoginSchema = {
                         type: 'object',
                         properties: {
                             accessToken: {
-                                type: 'object',
-                                properties: {
-                                    token: {
-                                        type: 'string',
-                                        default:
-                                            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30',
-                                    },
-                                    expires: { type: 'string', default: '1d' },
-                                },
+                                type: 'string',
                             },
-                            refreshToken: {
-                                type: 'object',
-                                properties: {
-                                    token: {
-                                        type: 'string',
-                                        default:
-                                            'eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.owv7q9nVbW5tqUezF_G2nHTra-ANW3HqW9epyVwh08Y-Z-FKsnG8eBIpC4GTfTVU',
-                                    },
-                                    expires: { type: 'string', default: '15d' },
-                                },
-                            },
+                            expires: { type: 'string', default: '1d' },
                         },
                     },
                 },

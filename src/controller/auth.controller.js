@@ -4,6 +4,7 @@ import {
     getAll,
     getUserById,
     updateUser,
+    loginUser,
 } from '../service/user.service.js';
 
 export async function signUpUser(req, res) {
@@ -23,7 +24,6 @@ export async function signUpUser(req, res) {
                 message: error.message,
             });
         }
-        console.log(error.message);
         return res.status(500).send({
             statusCode: 500,
             message: 'Internal Server Error',
@@ -33,8 +33,28 @@ export async function signUpUser(req, res) {
 
 export async function signInUser(req, res) {
     try {
+        const data = await loginUser(req.server, req.body);
+        return res.status(200).send({
+            statusCode: 200,
+            message: 'User logged in successfully',
+            data: data,
+        });
     } catch (error) {
-        return error.message;
+        if (error.message === 'User not exists') {
+            return res.status(403).send({
+                statusCode: 403,
+                message: 'User does not exist',
+            });
+        } else if (error.message === 'User email or password is wrong') {
+            return res.status(400).send({
+                statusCode: 400,
+                message: error.message,
+            });
+        }
+        console.log(error);
+        return res
+            .status(500)
+            .send({ statusCode: 500, message: error.message });
     }
 }
 

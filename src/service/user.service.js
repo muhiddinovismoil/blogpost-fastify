@@ -1,4 +1,5 @@
-import { HashPass } from '../utils/index.js';
+import { HashPass, VerifyPass } from '../utils/index.js';
+import app from '../app.js';
 
 async function getUserByEmail(email, prisma) {
     try {
@@ -29,9 +30,25 @@ export async function registerUser(prisma, payload) {
     }
 }
 
-export async function loginUser(prisma, payload) {
+export async function loginUser(server, payload) {
     try {
+        const data = await getUserByEmail(payload.email, server.prisma);
+        if (data == 'User not found') throw new Error('User not exists');
+        const isChecked = await VerifyPass(data.password, payload.password);
+        if (!isChecked) throw new Error('User email or password is wrong');
+        const accessToken = app.jwt.sign(
+            {
+                id: data.id,
+                fullName: data.fullName,
+            },
+            { expiresIn: process.env.JWT_SECRET_TIME }
+        );
+        return {
+            accessToken,
+            expiresIn: process.env.JWT_SECRET_TIME,
+        };
     } catch (error) {
+        console.log(error);
         throw new Error(error.message);
     }
 }
