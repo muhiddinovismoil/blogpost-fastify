@@ -56,6 +56,7 @@ npm run start:dev
 # 🗂 Project Structure
 
 ```
+├──blog-post_fastify/
 ├── .env
 ├── .env.example
 ├── package.json
