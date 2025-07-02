@@ -1,3 +1,7 @@
+import { HttpStatusCodes } from '../../utils/index.js';
+
+const { BAD_REQUEST, OK, INTERNAL_SERVER_ERROR } = HttpStatusCodes;
+
 export const RegisterSchema = {
     schema: {
         tags: ['Auth'],
@@ -16,7 +20,7 @@ export const RegisterSchema = {
                 type: 'object',
                 properties: {
                     message: { type: 'string', default: 'OK' },
-                    statusCode: { type: 'integer', default: 200 },
+                    statusCode: { type: 'integer', default: OK },
                     data: {
                         type: 'object',
                         properties: {
@@ -32,7 +36,7 @@ export const RegisterSchema = {
                 type: 'object',
                 properties: {
                     message: { type: 'string', default: 'Bad Request' },
-                    statusCode: { type: 'integer', default: 400 },
+                    statusCode: { type: 'integer', default: BAD_REQUEST },
                 },
             },
             500: {
@@ -42,7 +46,10 @@ export const RegisterSchema = {
                         type: 'string',
                         default: 'Interval Server Error',
                     },
-                    statusCode: { type: 'integer', default: 500 },
+                    statusCode: {
+                        type: 'integer',
+                        default: INTERNAL_SERVER_ERROR,
+                    },
                 },
             },
         },
