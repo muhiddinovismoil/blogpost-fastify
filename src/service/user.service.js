@@ -1,5 +1,6 @@
 import { HashPass, VerifyPass } from '../utils/index.js';
 import app from '../app.js';
+import { generateOTP, sendEmail } from '../plugins/nodemailer.js';
 
 async function getUserByEmail(email, prisma) {
     try {
@@ -52,11 +53,27 @@ export async function loginUser(server, payload) {
     }
 }
 
-export async function sendOtp() {
+export async function sendOtpToUser(prisma, payload) {
     try {
+        const otp = generateOTP();
+        const data = await prisma.users.findFirst({
+            where: { email: payload.email },
+        });
+        if (!data) throw new Error('User does not exist');
+        const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
+        await prisma.otp.create({
+            data: { code: otp, expiresAt, userId: data.id },
+        });
+        await sendEmail({ to: payload.email, otp });
+        return data.id;
     } catch (error) {
         throw new Error(error.message);
     }
+}
+
+export async function resetPass(prisma, payload) {
+    try {
+    } catch (error) {}
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
@@ -69,7 +86,7 @@ export async function sendOtp() {
 
 export async function getAll(prisma) {
     try {
-        return await prisma.users.findMany();
+        return (await prisma.users.findMany()) || [];
     } catch (error) {
         throw new Error(error.message);
     }

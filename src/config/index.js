@@ -16,22 +16,16 @@ export const schema = {
         DATABASE_URL: {
             type: 'string',
         },
-        JWT_ACCESS_SECRET: {
+        JWT_SECRET: {
             type: 'string',
         },
-        JWT_REFRESH_SECRET: {
-            type: 'string',
-        },
-        JWT_ACCESS_TIME: {
-            type: 'string',
-        },
-        JWT_REFRESH_TIME: {
-            type: 'string',
-        },
-        GMAIL_APP_PASS: {
+        JWT_SECRET_TIME: {
             type: 'string',
         },
         GMAIL: {
+            type: 'string',
+        },
+        GMAIL_APP_PASS: {
             type: 'string',
         },
     },

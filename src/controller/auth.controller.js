@@ -6,6 +6,7 @@ import {
     getUserById,
     updateUser,
     loginUser,
+    sendOtpToUser,
 } from '../service/user.service.js';
 
 export async function signUpUser(req, res) {
@@ -60,9 +61,25 @@ export async function signInUser(req, res) {
 
 export async function sendOtp(req, res) {
     try {
-        const otp = generateOTP();
+        const data = await sendOtpToUser(req.server.prisma, req.body);
+        if (!data) throw new Error('Something went wrong');
+        res.status(200).send({
+            statusCode: 200,
+            message: 'OTP code successfully sended to your email',
+            data: {
+                id: data,
+            },
+        });
     } catch (error) {
-        return error.message;
+        if (error.message === 'User does not exist') {
+            return res.status(400).send({
+                statusCode: 400,
+                message: error.message,
+            });
+        }
+        return res
+            .status(500)
+            .send({ statusCode: 500, message: error.message });
     }
 }
 
