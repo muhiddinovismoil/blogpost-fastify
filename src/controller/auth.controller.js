@@ -1,3 +1,4 @@
+import { generateOTP } from '../plugins/nodemailer.js';
 import {
     registerUser,
     deleteUser,
@@ -58,6 +59,14 @@ export async function signInUser(req, res) {
 }
 
 export async function sendOtp(req, res) {
+    try {
+        const otp = generateOTP();
+    } catch (error) {
+        return error.message;
+    }
+}
+
+export async function verifyOtp(req, res) {
     try {
     } catch (error) {
         return error.message;
