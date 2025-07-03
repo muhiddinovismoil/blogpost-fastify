@@ -1,11 +1,26 @@
 import * as authController from '../controller/index.js';
-import { RegisterSchema, LoginSchema, SendOtp } from '../schema/users/index.js';
+import {
+    RegisterSchema,
+    LoginSchema,
+    SendOtp,
+    VerifySchema,
+    ForgetPassSchema,
+    ResetPassSchema,
+} from '../schema/users/index.js';
 
 export default async function authRoutes(fastify, opts) {
     fastify.post('/signup', { ...RegisterSchema }, authController.signUpUser);
     fastify.post('/signin', { ...LoginSchema }, authController.signInUser);
     fastify.post('/send-otp', { ...SendOtp }, authController.sendOtp);
-    fastify.post('/verify-otp', authController.verifyOtp);
-    fastify.patch('/reset-password', authController.resetPassword);
-    fastify.post('/forget-password', authController.forgetPassword);
+    fastify.post('/verify-otp', { ...VerifySchema }, authController.verifyOtp);
+    fastify.patch(
+        '/reset-password',
+        { ...ResetPassSchema },
+        authController.resetPassword
+    );
+    fastify.post(
+        '/forget-password',
+        { ...ForgetPassSchema },
+        authController.forgetPassword
+    );
 }
