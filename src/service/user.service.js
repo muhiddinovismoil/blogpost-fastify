@@ -88,6 +88,31 @@ export async function resetPass(prisma, payload) {
     }
 }
 
+export async function forgetPass(prisma, payload) {
+    try {
+        // const data = await prisma.
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+export async function verifyOTP(prisma, payload) {
+    try {
+        const data = await getUserByEmail(payload.email, prisma);
+        if (data == 'User not found') throw new Error('User does not exist');
+        const otpExists = await prisma.otp.findFirst({
+            where: { AND: [{ userId: id }, { code: payload.otp }] },
+        });
+        if (!otpExists) throw new Error('You otp was wrong');
+        await prisma.otp.delete({
+            where: { AND: [{ userId: id }, { code: payload.otp }] },
+        });
+        return;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
 //********************************************************************************************************************************************************************************/
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------/

@@ -7,6 +7,8 @@ import {
     updateUser,
     loginUser,
     sendOtpToUser,
+    verifyOTP,
+    resetPass,
 } from '../service/user.service.js';
 
 export async function signUpUser(req, res) {
@@ -85,15 +87,49 @@ export async function sendOtp(req, res) {
 
 export async function verifyOtp(req, res) {
     try {
+        const data = await verifyOTP(req.server.prisma, req.body);
+        return res.status(200).send({
+            statusCode: 200,
+            message: 'You are successfully verified your otp',
+        });
     } catch (error) {
-        return error.message;
+        if (error.message == 'User does not exist') {
+            return res.status(400).send({
+                statusCode: 400,
+                message: 'Your email was wrong',
+            });
+        } else if (error.message == 'You otp was wrong') {
+            return res.status(400).send({
+                statusCode: 400,
+                message: error.message,
+            });
+        }
+        return res.status(500).send(error.message);
     }
 }
 
 export async function resetPassword(req, res) {
     try {
+        const data = await resetPass(req.server.prisma, req.body);
+        if (data)
+            return res.status(200).send({
+                statusCode: 200,
+                message: 'You successfully resetted your password',
+                data: { id: data },
+            });
     } catch (error) {
-        return error.message;
+        if (error.message == 'User does not exist') {
+            return res
+                .status(400)
+                .send({ statusCode: 400, message: error.message });
+        } else if (error.message == 'Your old password is not suit') {
+            return res
+                .status(400)
+                .send({ statusCode: 400, message: error.message });
+        }
+        return res
+            .status(500)
+            .send({ statusCode: 500, message: error.message });
     }
 }
 
