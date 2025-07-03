@@ -2,16 +2,16 @@ import { HttpStatusCodes } from '../../utils';
 
 const { OK, BAD_REQUEST, INTERNAL_SERVER_ERROR } = HttpStatusCodes;
 
-export const VerifySchema = {
+export const ForgetPassSchema = {
     schema: {
         tags: ['Auth'],
         security: [],
         body: {
             type: 'object',
-            required: ['email', 'otp'],
+            required: ['email', 'password'],
             properties: {
                 email: { type: 'string', format: 'email' },
-                otp: { type: 'string' },
+                password: { type: 'string' },
             },
         },
         response: {
