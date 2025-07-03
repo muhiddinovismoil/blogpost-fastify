@@ -1,16 +1,17 @@
-import { HttpStatusCodes } from '../../utils/index.js';
+import { HttpStatusCodes } from '../../utils';
 
-const { BAD_REQUEST, OK, INTERNAL_SERVER_ERROR } = HttpStatusCodes;
+const { OK, BAD_REQUEST, INTERNAL_SERVER_ERROR } = HttpStatusCodes;
 
-export const SendOtp = {
+export const ResetPassSchema = {
     schema: {
         tags: ['Auth'],
-        security: [],
         body: {
             type: 'object',
-            required: ['email'],
+            required: ['email', 'oldPassword', 'newPassword'],
             properties: {
                 email: { type: 'string', format: 'email' },
+                oldPassword: { type: 'string', minLength: 8 },
+                newPassword: { type: 'string', minLength: 8 },
             },
         },
         response: {
@@ -24,10 +25,7 @@ export const SendOtp = {
             400: {
                 type: 'object',
                 properties: {
-                    statusCode: {
-                        type: 'integer',
-                        default: BAD_REQUEST,
-                    },
+                    statusCode: { type: 'integer', default: BAD_REQUEST },
                     message: { type: 'string', default: 'Bad Request' },
                 },
             },

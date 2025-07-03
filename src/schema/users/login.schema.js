@@ -50,7 +50,7 @@ export const LoginSchema = {
                 properties: {
                     message: {
                         type: 'string',
-                        default: 'Interval Server Error',
+                        default: 'Internal Server Error',
                     },
                     statusCode: {
                         type: 'integer',

@@ -56,10 +56,8 @@ export async function loginUser(server, payload) {
 export async function sendOtpToUser(prisma, payload) {
     try {
         const otp = generateOTP();
-        const data = await prisma.users.findFirst({
-            where: { email: payload.email },
-        });
-        if (!data) throw new Error('User does not exist');
+        const data = await getUserByEmail(payload.email, server.prisma);
+        if (data == 'User not found') throw new Error('User does not exist');
         const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
         await prisma.otp.create({
             data: { code: otp, expiresAt, userId: data.id },
@@ -73,7 +71,21 @@ export async function sendOtpToUser(prisma, payload) {
 
 export async function resetPass(prisma, payload) {
     try {
-    } catch (error) {}
+        const data = await getUserByEmail(payload.email, prisma);
+        if (data == 'User not found') throw new Error('User does not exist');
+        const isChecked = await VerifyPass(data.password, payload.oldPassword);
+        if (isChecked) {
+            const password = HashPass(data.newPassword);
+            const { id } = await prisma.users.update({
+                where: { email: payload.email },
+                data: { password },
+            });
+            return id;
+        }
+        throw new Error('Your old password is not suit');
+    } catch (error) {
+        throw new Error(error.message);
+    }
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------/
