@@ -1,14 +1,10 @@
-import { generateOTP } from '../plugins/nodemailer.js';
 import {
     registerUser,
-    deleteUser,
-    getAll,
-    getUserById,
-    updateUser,
     loginUser,
     sendOtpToUser,
     verifyOTP,
     resetPass,
+    forgetPass,
 } from '../service/user.service.js';
 
 export async function signUpUser(req, res) {
@@ -135,8 +131,18 @@ export async function resetPassword(req, res) {
 
 export async function forgetPassword(req, res) {
     try {
+        const data = await forgetPass(req.server.prisma, req.body);
+        if (data == 'You are setted new password successfully')
+            return res.status(200).send({ statusCode: 200, message: data });
     } catch (error) {
-        return error.message;
+        if (error.message == 'User does not exist') {
+            return res
+                .status(400)
+                .send({ statusCode: 400, message: error.message });
+        }
+        return res
+            .status(500)
+            .send({ statusCode: 500, message: error.message });
     }
 }
 

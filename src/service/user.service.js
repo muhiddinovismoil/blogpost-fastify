@@ -90,7 +90,14 @@ export async function resetPass(prisma, payload) {
 
 export async function forgetPass(prisma, payload) {
     try {
-        // const data = await prisma.
+        const data = await getUserByEmail(payload.email, prisma);
+        if (data == 'User not found') throw new Error('User does not exist');
+        const hashedPass = HashPass(payload.password);
+        await prisma.users.update({
+            where: { email: payload.email },
+            data: { password: hashedPass },
+        });
+        return 'You are setted new password successfully';
     } catch (error) {
         throw new Error(error.message);
     }
@@ -143,7 +150,7 @@ export async function updateUser(prisma, id, payload) {
         if (!data) throw new Error('User not found');
         await prisma.users.update({
             where: { id },
-            data: { payload, password: data?.password },
+            data: { ...payload, password: data?.password },
         });
         return { data: 'User successfully updated' };
     } catch (error) {
