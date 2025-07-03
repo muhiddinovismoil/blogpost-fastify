@@ -1,4 +1,4 @@
-import { HttpStatusCodes } from '../../utils';
+import { HttpStatusCodes } from '../../utils/index.js';
 
 const { OK, BAD_REQUEST, INTERNAL_SERVER_ERROR } = HttpStatusCodes;
 
