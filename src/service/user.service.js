@@ -56,7 +56,7 @@ export async function loginUser(server, payload) {
 export async function sendOtpToUser(prisma, payload) {
     try {
         const otp = generateOTP();
-        const data = await getUserByEmail(payload.email, server.prisma);
+        const data = await getUserByEmail(payload.email, prisma);
         if (data == 'User not found') throw new Error('User does not exist');
         const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
         await prisma.otp.create({
@@ -92,7 +92,7 @@ export async function forgetPass(prisma, payload) {
     try {
         const data = await getUserByEmail(payload.email, prisma);
         if (data == 'User not found') throw new Error('User does not exist');
-        const hashedPass = HashPass(payload.password);
+        const hashedPass = await HashPass(payload.password);
         await prisma.users.update({
             where: { email: payload.email },
             data: { password: hashedPass },
@@ -108,11 +108,11 @@ export async function verifyOTP(prisma, payload) {
         const data = await getUserByEmail(payload.email, prisma);
         if (data == 'User not found') throw new Error('User does not exist');
         const otpExists = await prisma.otp.findFirst({
-            where: { AND: [{ userId: id }, { code: payload.otp }] },
+            where: { code: payload.otp },
         });
         if (!otpExists) throw new Error('You otp was wrong');
         await prisma.otp.delete({
-            where: { AND: [{ userId: id }, { code: payload.otp }] },
+            where: { code: payload.otp },
         });
         return;
     } catch (error) {

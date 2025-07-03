@@ -50,7 +50,7 @@ model Blogs {
 
 model Otp {
   id        String   @default(dbgenerated("GEN_RANDOM_UUID()")) @map("id") @db.Uuid
-  code      String   @map("code")
+  code      String   @unique @map("code")
   expiresAt DateTime @map("expires_at") @db.Timestamp
   is_used   Boolean? @default(false) @map("is_used")
   userId    String   @map("user_id") @db.Uuid
