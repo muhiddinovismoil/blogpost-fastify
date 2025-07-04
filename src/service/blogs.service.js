@@ -28,7 +28,7 @@ export async function createBlogs(prisma, payload) {
         throw new Error(error.message);
     }
 }
-export async function updateBlogs(prisma, id) {
+export async function updateBlogs(prisma, id, payload) {
     try {
         const data = await getById(id);
         if (!data) throw new Error('Blog not found');

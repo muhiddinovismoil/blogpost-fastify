@@ -56,7 +56,20 @@ export async function createData(req, res) {
 
 export async function updateData(req, res) {
     try {
+        const data = await updateBlogs(
+            req.server.prisma,
+            req.params.id,
+            req.body
+        );
+        if (data == 'Blog updated successfully') {
+            return res.status(200).send({ statusCode: 200, message: data });
+        }
     } catch (error) {
+        if (error.message == 'Blog not found') {
+            return res
+                .status(404)
+                .send({ statusCode: 404, message: error.message });
+        }
         return res.status(500).send({
             statusCode: 500,
             message: error.message,
@@ -66,7 +79,16 @@ export async function updateData(req, res) {
 
 export async function deleteData(req, res) {
     try {
+        const data = await deleteBlogs(req.server.prisma, req.params.id);
+        if (data == 'User deleted successfully') {
+            return res.status(200).send({ statusCode: 200, message: data });
+        }
     } catch (error) {
+        if (error.message == 'Blog not found') {
+            return res
+                .status(404)
+                .send({ statusCode: 404, message: error.message });
+        }
         return res.status(500).send({
             statusCode: 500,
             message: error.message,
