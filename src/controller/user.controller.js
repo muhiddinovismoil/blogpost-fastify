@@ -1,24 +1,56 @@
+import {
+    deleteUser,
+    updateUser,
+    getAll,
+    getUserById,
+} from '../service/user.service.js';
+
 export async function getAllUsers(req, res) {
     try {
-    } catch (error) {}
+        const data = await getAll(req.server.prisma);
+        return res.status(200).send({
+            statusCode: 200,
+            message: 'Users fetched successfully',
+            data: data,
+        });
+    } catch (error) {
+        return res.status(500).send({
+            statusCode: 500,
+            message: error.message,
+        });
+    }
 }
 
-export async function getUserById(req, res) {
+export async function getUserByID(req, res) {
     try {
-    } catch (error) {}
+        console.log(req.params);
+        const data = await getUserByID(req.prisma.server, req.params);
+        return res.status(200).send({
+            statusCode: 200,
+            message: 'User fetched successfully',
+            data,
+        });
+    } catch (error) {
+        return res
+            .status(500)
+            .send({ statusCode: 500, message: error.message });
+    }
 }
 
 export async function createUser(req, res) {
     try {
+        // const data = await
     } catch (error) {}
 }
 
-export async function updateUser(req, res) {
+export async function updateUserById(req, res) {
     try {
+        // const data = await
     } catch (error) {}
 }
 
-export async function deleteUser(req, res) {
+export async function deleteUserById(req, res) {
     try {
+        // const data = await
     } catch (error) {}
 }

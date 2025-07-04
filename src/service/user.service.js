@@ -132,7 +132,15 @@ export async function verifyOTP(prisma, payload) {
 
 export async function getAll(prisma) {
     try {
-        return (await prisma.users.findMany()) || [];
+        const data = await prisma.users.findMany({
+            select: {
+                id: true,
+                fullName: true,
+                email: true,
+                photo: true,
+            },
+        });
+        return data.length == 0 ? [] : data;
     } catch (error) {
         throw new Error(error.message);
     }
@@ -140,7 +148,15 @@ export async function getAll(prisma) {
 
 export async function getUserById(prisma, id) {
     try {
-        return await prisma.users.findFirst({ where: { id } });
+        return await prisma.users.findFirst({
+            where: { id },
+            select: {
+                id: true,
+                fullName: true,
+                email: true,
+                photo: true,
+            },
+        });
     } catch (error) {
         throw new Error(error.message);
     }
@@ -154,7 +170,7 @@ export async function updateUser(prisma, id, payload) {
             where: { id },
             data: { ...payload, password: data?.password },
         });
-        return { data: 'User successfully updated' };
+        return 'User successfully updated';
     } catch (error) {
         throw new Error(error.message);
     }
@@ -165,7 +181,7 @@ export async function deleteUser(prisma, id) {
         const data = await getUserById(prisma, id);
         if (!data) throw new Error('User not found');
         await prisma.users.delete({ where: { id } });
-        return { data: 'User successfully deleted' };
+        return 'User successfully deleted';
     } catch (error) {
         throw new Error(error.message);
     }
