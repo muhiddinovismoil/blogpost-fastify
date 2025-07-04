@@ -8,7 +8,7 @@ import {
 } from '../schema/blogs/index.js';
 
 export default async function blogsRoutes(fastify, opts) {
-    fastify.get('/', { ...GetAllBlogsSchema }, blogsController.getAllBlogs);
+    fastify.get('', { ...GetAllBlogsSchema }, blogsController.getAllBlogs);
     fastify.get('/:id', { ...GetByIdBlogSchema }, blogsController.getBlogById);
     fastify.post('/', { ...CreateBlogSchema }, blogsController.createData);
     fastify.patch('/:id', { ...UpdateBlogSchema }, blogsController.updateData);
