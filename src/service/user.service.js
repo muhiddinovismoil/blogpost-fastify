@@ -148,7 +148,7 @@ export async function getAll(prisma) {
 
 export async function getUserById(prisma, id) {
     try {
-        return await prisma.users.findFirst({
+        const data = await prisma.users.findFirst({
             where: { id },
             select: {
                 id: true,
@@ -157,6 +157,7 @@ export async function getUserById(prisma, id) {
                 photo: true,
             },
         });
+        return data;
     } catch (error) {
         throw new Error(error.message);
     }

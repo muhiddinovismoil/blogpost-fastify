@@ -23,17 +23,17 @@ export async function getAllUsers(req, res) {
 
 export async function getUserByID(req, res) {
     try {
-        console.log(req.params);
-        const data = await getUserByID(req.prisma.server, req.params);
+        const data = await getUserById(req.server.prisma, req.params.id);
         return res.status(200).send({
             statusCode: 200,
             message: 'User fetched successfully',
             data,
         });
     } catch (error) {
-        return res
-            .status(500)
-            .send({ statusCode: 500, message: error.message });
+        return res.status(500).send({
+            statusCode: 500,
+            message: error.message,
+        });
     }
 }
 
