@@ -3,7 +3,7 @@ export const CreateBlogSchema = {
         tags: ['Blogs'],
         body: {
             type: 'object',
-            required: [],
+            required: ['title', 'subTitle'],
             properties: {},
         },
     },

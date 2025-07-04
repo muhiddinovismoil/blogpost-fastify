@@ -36,6 +36,7 @@ model Blogs {
   subTitle String @map("sub_title")
   media    String @map("media")
   userId   String @map("user_id") @db.Uuid
+  content  String @map("content")
 
   createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamp
   updatedAt  DateTime  @updatedAt @map("updated_at") @db.Timestamp
