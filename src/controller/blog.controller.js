@@ -24,7 +24,7 @@ export async function getAllBlogs(req, res) {
 
 export async function getBlogById(req, res) {
     try {
-        const data = await getBlogById(req.server.prisma, req.params.id);
+        const data = await getById(req.server.prisma, req.params.id);
         return res.status(200).send({
             statusCode: 200,
             message: 'Blogs fetched successfully',
