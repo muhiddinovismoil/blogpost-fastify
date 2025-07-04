@@ -75,15 +75,17 @@ export async function resetPass(prisma, payload) {
         if (data == 'User not found') throw new Error('User does not exist');
         const isChecked = await VerifyPass(data.password, payload.oldPassword);
         if (isChecked) {
-            const password = HashPass(data.newPassword);
+            const password = await HashPass(payload.newPassword);
             const { id } = await prisma.users.update({
                 where: { email: payload.email },
-                data: { password },
+                data: { password: password },
             });
             return id;
+        } else {
+            throw new Error('Your old password is not suit');
         }
-        throw new Error('Your old password is not suit');
     } catch (error) {
+        console.log(error);
         throw new Error(error.message);
     }
 }
