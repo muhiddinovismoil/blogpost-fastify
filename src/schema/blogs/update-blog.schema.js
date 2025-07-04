@@ -1,6 +1,15 @@
 export const UpdateBlogSchema = {
     schema: {
         tags: ['Blogs'],
+        body: {
+            type: 'object',
+            properties: {
+                title: { type: 'string' },
+                subTitle: { type: 'string' },
+                media: { type: 'string' },
+                content: { type: 'string' },
+            },
+        },
         response: {
             200: {
                 type: 'object',
