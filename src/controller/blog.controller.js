@@ -17,7 +17,7 @@ export async function getAllBlogs(req, res) {
     } catch (error) {
         return res.status(500).send({
             statusCode: 500,
-            message: 'Interval Server Error',
+            message: error.message,
         });
     }
 }
@@ -33,22 +33,43 @@ export async function getBlogById(req, res) {
     } catch (error) {
         return res.status(500).send({
             statusCode: 500,
-            message: 'Interval Server Error',
+            message: error.message,
         });
     }
 }
 
 export async function createData(req, res) {
     try {
-    } catch (error) {}
+        const data = await createBlogs(req.server.prisma, req.body);
+        return res.status(200).send({
+            statusCode: 200,
+            message: 'Mew  blog created',
+            data: { id: data },
+        });
+    } catch (error) {
+        return res.status(500).send({
+            statusCode: 500,
+            message: error.message,
+        });
+    }
 }
 
 export async function updateData(req, res) {
     try {
-    } catch (error) {}
+    } catch (error) {
+        return res.status(500).send({
+            statusCode: 500,
+            message: error.message,
+        });
+    }
 }
 
 export async function deleteData(req, res) {
     try {
-    } catch (error) {}
+    } catch (error) {
+        return res.status(500).send({
+            statusCode: 500,
+            message: error.message,
+        });
+    }
 }
