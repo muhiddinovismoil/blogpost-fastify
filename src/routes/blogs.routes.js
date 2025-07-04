@@ -1,9 +1,16 @@
 import * as blogsController from '../controller/index.js';
+import {
+    CreateBlogSchema,
+    DeleteBlogSchema,
+    GetAllBlogsSchema,
+    GetByIdBlogSchema,
+    UpdateBlogSchema,
+} from '../schema/blogs/index.js';
 
 export default async function blogsRoutes(fastify, opts) {
-    fastify.get('/', blogsController.getAllBlogs);
-    fastify.get('/:id', blogsController.getBlogById);
-    fastify.post('/', blogsController.createBlog);
-    fastify.patch('/:id', blogsController.updateBlog);
-    fastify.delete('/:id', blogsController.deleteBlog);
+    fastify.get('/', { ...GetAllBlogsSchema }, blogsController.getAllBlogs);
+    fastify.get('/:id', { ...GetByIdBlogSchema }, blogsController.getBlogById);
+    fastify.post('/', { ...CreateBlogSchema }, blogsController.createBlog);
+    fastify.patch('/:id', { ...UpdateBlogSchema }, blogsController.updateBlog);
+    fastify.delete('/:id', { ...DeleteBlogSchema }, blogsController.deleteBlog);
 }
