@@ -1,6 +1,5 @@
 import * as userController from '../controller/index.js';
-import { GetAllSchema } from '../schema/users/getall-users.schema.js';
-import { GetUserByIdSchema } from '../schema/users/getby-id.schema.js';
+import { GetAllSchema, GetUserByIdSchema } from '../schema/users/index.js';
 
 export default async function userRoutes(fastify, opts) {
     fastify.get('', { ...GetAllSchema }, userController.getAllUsers);
