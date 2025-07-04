@@ -13,14 +13,14 @@ export default async function authRoutes(fastify, opts) {
     fastify.post('/signin', { ...LoginSchema }, authController.signInUser);
     fastify.post('/send-otp', { ...SendOtp }, authController.sendOtp);
     fastify.post('/verify-otp', { ...VerifySchema }, authController.verifyOtp);
-    fastify.patch(
-        '/reset-password',
-        { ...ResetPassSchema },
-        authController.resetPassword
-    );
     fastify.post(
         '/forget-password',
         { ...ForgetPassSchema },
         authController.forgetPassword
+    );
+    fastify.patch(
+        '/reset-password',
+        { ...ResetPassSchema },
+        authController.resetPassword
     );
 }
