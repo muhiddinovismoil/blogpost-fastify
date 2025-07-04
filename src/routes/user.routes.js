@@ -11,12 +11,12 @@ export default async function userRoutes(fastify, opts) {
     fastify.get('/:id', { ...GetUserByIdSchema }, userController.getUserByID);
     fastify.patch(
         '/:id',
-        { ...DeleteUserSchema },
+        { ...UpdateUserSchema },
         userController.updateUserById
     );
     fastify.delete(
         '/:id',
-        { ...UpdateUserSchema },
+        { ...DeleteUserSchema },
         userController.deleteUserById
     );
 }
