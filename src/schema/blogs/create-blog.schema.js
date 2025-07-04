@@ -16,7 +16,7 @@ export const CreateBlogSchema = {
                 type: 'object',
                 properties: {
                     statusCode: { type: 'integer', default: 200 },
-                    message: { type: 'string' },
+                    message: { type: 'string', default: 'OK' },
                     data: {
                         id: { type: 'string' },
                     },
@@ -26,7 +26,10 @@ export const CreateBlogSchema = {
                 type: 'object',
                 properties: {
                     statusCode: { type: 'integer', default: 500 },
-                    message: { type: 'string' },
+                    message: {
+                        type: 'string',
+                        default: 'Interval Server Error',
+                    },
                 },
             },
         },
