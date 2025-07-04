@@ -37,20 +37,42 @@ export async function getUserByID(req, res) {
     }
 }
 
-export async function createUser(req, res) {
-    try {
-        // const data = await
-    } catch (error) {}
-}
-
 export async function updateUserById(req, res) {
     try {
-        // const data = await
-    } catch (error) {}
+        const data = await updateUser(
+            req.server.prisma,
+            req.params.id,
+            req.body
+        );
+        if (data == 'User successfully updated') {
+            return res.status(200).send({ statusCode: 200, message: data });
+        }
+    } catch (error) {
+        if (error.message == 'User not found') {
+            return res
+                .status(404)
+                .send({ statusCode: 404, message: error.message });
+        }
+        return res
+            .status(500)
+            .send({ statusCode: 500, message: error.message });
+    }
 }
 
 export async function deleteUserById(req, res) {
     try {
-        // const data = await
-    } catch (error) {}
+        const data = await deleteUser(req.server.prisma, req.params.id);
+        if (data == 'User successfully deleted') {
+            return res.status(200).send({ statusCode: 200, message: data });
+        }
+    } catch (error) {
+        if (error.message == 'User not found') {
+            return res
+                .status(404)
+                .send({ statusCode: 404, message: error.message });
+        }
+        return res
+            .status(500)
+            .send({ statusCode: 500, message: error.message });
+    }
 }
