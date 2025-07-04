@@ -8,17 +8,17 @@ export async function getBlogById(req, res) {
     } catch (error) {}
 }
 
-export async function createBlog(req, res) {
+export async function createData(req, res) {
     try {
     } catch (error) {}
 }
 
-export async function updateBlog(req, res) {
+export async function updateData(req, res) {
     try {
     } catch (error) {}
 }
 
-export async function deleteBlog(req, res) {
+export async function deleteData(req, res) {
     try {
     } catch (error) {}
 }

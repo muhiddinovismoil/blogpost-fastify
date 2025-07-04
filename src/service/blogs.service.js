@@ -4,7 +4,7 @@ export async function getAll(prisma) {
         throw new Error(error.message);
     }
 }
-export async function getBlogsById(prisma, id) {
+export async function getById(prisma, id) {
     try {
     } catch (error) {
         throw new Error(error.message);
