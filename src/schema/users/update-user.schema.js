@@ -1,6 +1,14 @@
 export const UpdateUserSchema = {
     schema: {
         tags: ['Users'],
+        body: {
+            type: 'object',
+            properties: {
+                email: { type: 'string' },
+                fullName: { type: 'string' },
+                photo: { type: 'string' },
+            },
+        },
         response: {
             200: {
                 type: 'object',
