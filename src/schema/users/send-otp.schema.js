@@ -1,7 +1,5 @@
 import { HttpStatusCodes } from '../../utils/index.js';
 
-const { BAD_REQUEST, OK, INTERNAL_SERVER_ERROR } = HttpStatusCodes;
-
 export const SendOtp = {
     schema: {
         tags: ['Auth'],
@@ -17,7 +15,10 @@ export const SendOtp = {
             200: {
                 type: 'object',
                 properties: {
-                    statusCode: { type: 'integer', default: OK },
+                    statusCode: {
+                        type: 'integer',
+                        default: HttpStatusCodes.OK,
+                    },
                     message: { type: 'string' },
                 },
             },
@@ -26,7 +27,7 @@ export const SendOtp = {
                 properties: {
                     statusCode: {
                         type: 'integer',
-                        default: BAD_REQUEST,
+                        default: HttpStatusCodes.BAD_REQUEST,
                     },
                     message: { type: 'string', default: 'Bad Request' },
                 },
@@ -36,7 +37,7 @@ export const SendOtp = {
                 properties: {
                     statusCode: {
                         type: 'integer',
-                        default: INTERNAL_SERVER_ERROR,
+                        default: HttpStatusCodes.INTERNAL_SERVER_ERROR,
                     },
                     message: {
                         type: 'string',
