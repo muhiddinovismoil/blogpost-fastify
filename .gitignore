@@ -129,3 +129,5 @@ dist
 !.yarn/versions
 
 /src/generated/prisma
+
+.upload
