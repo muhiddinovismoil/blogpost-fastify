@@ -1,3 +1,5 @@
+import { HttpStatusCodes } from '../../utils/index.js';
+
 export const GetByIdBlogSchema = {
     schema: {
         tags: ['Blogs'],
@@ -5,7 +7,10 @@ export const GetByIdBlogSchema = {
             200: {
                 type: 'object',
                 properties: {
-                    statusCode: { type: 'integer', default: 200 },
+                    statusCode: {
+                        type: 'integer',
+                        default: HttpStatusCodes.OK,
+                    },
                     message: { type: 'string', default: 'OK' },
                     data: {
                         type: 'object',
@@ -22,10 +27,13 @@ export const GetByIdBlogSchema = {
             500: {
                 type: 'object',
                 properties: {
-                    statusCode: { type: 'integer', default: 500 },
+                    statusCode: {
+                        type: 'integer',
+                        default: HttpStatusCodes.INTERNAL_SERVER_ERROR,
+                    },
                     message: {
                         type: 'string',
-                        default: 'Interval Server Error',
+                        default: 'Internal Server Error',
                     },
                 },
             },
