@@ -7,7 +7,8 @@ export async function authMiddleware(request, reply) {
         }
         await request.jwtVerify();
     } catch (err) {
-        console.error('❌ JWT VERIFY ERROR:', err.message);
-        return reply.status(401).send({ message: 'Unauthorized' });
+        return reply
+            .status(401)
+            .send({ statusCode: 401, message: 'Unauthorized' });
     }
 }

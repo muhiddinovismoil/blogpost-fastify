@@ -1,9 +1,8 @@
 export const UploadMediaSchema = {
     schema: {
         summary: 'Upload a file',
-        consumes: ['multipart/form-data'],
-        produces: ['application/json'],
         tags: ['Files'],
+        consumes: ['multipart/form-data'],
         body: {
             type: 'object',
             properties: {
@@ -16,11 +15,10 @@ export const UploadMediaSchema = {
         },
         response: {
             200: {
-                description: 'File uploaded successfully',
+                description: 'Upload successful',
                 type: 'object',
                 properties: {
                     message: { type: 'string' },
-                    fileName: { type: 'string' },
                     url: { type: 'string' },
                 },
             },

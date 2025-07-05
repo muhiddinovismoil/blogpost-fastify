@@ -6,12 +6,14 @@ import mainRoutes from './routes/index.js';
 import * as config from './config/index.js';
 import prismaPlugin from './plugins/db.js';
 import path from 'path';
+import fastifyMultipart from '@fastify/multipart';
 
 const app = Fastify(config.pinoConf);
 
 await app.register(import('@fastify/jwt'), {
     secret: process.env.JWT_SECRET || 'HELLO WORLD',
 });
+await app.register(fastifyMultipart);
 await app.register(fastifyStatic, {
     root: path.join(process.cwd(), 'upload'),
     prefix: '/uploads/',
