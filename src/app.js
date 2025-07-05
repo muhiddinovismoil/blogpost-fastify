@@ -7,6 +7,7 @@ import * as config from './config/index.js';
 import prismaPlugin from './plugins/db.js';
 import path from 'path';
 import fastifyMultipart from '@fastify/multipart';
+import fs from 'fs';
 
 const app = Fastify(config.pinoConf);
 
@@ -14,8 +15,13 @@ await app.register(import('@fastify/jwt'), {
     secret: process.env.JWT_SECRET || 'HELLO WORLD',
 });
 await app.register(fastifyMultipart);
+const uploadDir = path.join(process.cwd(), 'upload');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
 await app.register(fastifyStatic, {
-    root: path.join(process.cwd(), 'upload'),
+    root: uploadDir,
     prefix: '/uploads/',
 });
 await app.register(prismaPlugin);
