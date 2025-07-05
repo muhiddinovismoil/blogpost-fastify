@@ -40,7 +40,8 @@ export async function getBlogById(req, res) {
 
 export async function createData(req, res) {
     try {
-        const data = await createBlogs(req.server.prisma, req.body);
+        const payload = { ...req.body, userId: req.user.id };
+        const data = await createBlogs(req.server.prisma, payload);
         return res.status(200).send({
             statusCode: 200,
             message: 'Mew  blog created',

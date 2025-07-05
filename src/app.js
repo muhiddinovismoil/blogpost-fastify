@@ -8,7 +8,7 @@ import prismaPlugin from './plugins/db.js';
 const app = Fastify(config.pinoConf);
 
 await app.register(import('@fastify/jwt'), {
-    secret: process.env.JWT_SECRET,
+    secret: process.env.JWT_SECRET || 'HELLO WORLD',
 });
 await app.register(prismaPlugin);
 await app.register(fastifySwagger, config.swaggerMainConf);
