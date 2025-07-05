@@ -40,6 +40,10 @@ export const UploadMediaSchema = {
                         type: 'integer',
                         default: HttpStatusCodes.INTERNAL_SERVER_ERROR,
                     },
+                    message: {
+                        type: 'string',
+                        default: 'Internal Server Error',
+                    },
                 },
             },
         },
