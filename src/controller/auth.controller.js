@@ -158,10 +158,3 @@ export async function forgetPassword(req, res) {
         });
     }
 }
-
-export async function getMe(req, res) {
-    try {
-    } catch (error) {
-        return error.message;
-    }
-}

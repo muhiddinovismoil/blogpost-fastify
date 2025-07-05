@@ -79,6 +79,22 @@ export async function deleteUserById(req, res) {
                 message: error.message,
             });
         }
+        return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send({
+            statusCode: HttpStatusCodes.INTERNAL_SERVER_ERROR,
+            message: error.message,
+        });
+    }
+}
+
+export async function getMe(req, res) {
+    try {
+        const user = await getUserById(req.server.prisma, req.user.id);
+        return res.status(HttpStatusCodes.OK).send({
+            statusCode: HttpStatusCodes.OK,
+            message: 'Your profile data fetched',
+            data: user,
+        });
+    } catch (error) {
         return res
             .status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
             .send({
