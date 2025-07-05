@@ -14,6 +14,11 @@ export default async function userRoutes(fastify, opts) {
         userController.getAllUsers
     );
     fastify.get(
+        '/me',
+        { preHandler: [authMiddleware], ...GetUserByIdSchema },
+        userController.getMe
+    );
+    fastify.get(
         '/:id',
         { preHandler: [authMiddleware], ...GetUserByIdSchema },
         userController.getUserByID
