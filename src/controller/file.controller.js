@@ -3,7 +3,9 @@ import { uploadFile } from '../service/file.service.js';
 
 export async function fileUpload(req, res) {
     try {
-        const data = await uploadFile(req.file);
+        const file = await req.file();
+        const data = await uploadFile(file);
+        console.log(data);
         return res.status(HttpStatusCodes.OK).send({
             statusCode: HttpStatusCodes.OK,
             message: data.message,

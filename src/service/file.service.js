@@ -4,7 +4,7 @@ import path from 'path';
 
 export async function uploadFile(file) {
     try {
-        const data = await file();
+        const data = file;
         const randomName = randomBytes(16).toString('hex');
         const fileExt = path.extname(data.filename);
         const fileName = `${randomName}${fileExt}`;

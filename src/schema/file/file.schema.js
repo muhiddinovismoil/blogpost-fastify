@@ -3,23 +3,19 @@ export const UploadMediaSchema = {
         summary: 'Upload a file',
         tags: ['Files'],
         consumes: ['multipart/form-data'],
-        body: {
-            type: 'object',
-            properties: {
-                file: {
-                    type: 'string',
-                    format: 'binary',
-                },
-            },
-            required: ['file'],
-        },
         response: {
             200: {
-                description: 'Upload successful',
                 type: 'object',
                 properties: {
+                    statusCode: { type: 'string', default: 200 },
                     message: { type: 'string' },
-                    url: { type: 'string' },
+                    data: {
+                        type: 'object',
+                        properties: {
+                            url: { type: 'string' },
+                            fileName: { type: 'string' },
+                        },
+                    },
                 },
             },
         },
