@@ -1,4 +1,5 @@
 import * as userController from '../controller/index.js';
+import { authMiddleware } from '../middleware/auth.guard.js';
 import {
     GetAllSchema,
     GetUserByIdSchema,
@@ -7,16 +8,24 @@ import {
 } from '../schema/users/index.js';
 
 export default async function userRoutes(fastify, opts) {
-    fastify.get('', { ...GetAllSchema }, userController.getAllUsers);
-    fastify.get('/:id', { ...GetUserByIdSchema }, userController.getUserByID);
+    fastify.get(
+        '',
+        { preHandler: [authMiddleware], ...GetAllSchema },
+        userController.getAllUsers
+    );
+    fastify.get(
+        '/:id',
+        { preHandler: [authMiddleware], ...GetUserByIdSchema },
+        userController.getUserByID
+    );
     fastify.patch(
         '/:id',
-        { ...UpdateUserSchema },
+        { preHandler: [authMiddleware], ...UpdateUserSchema },
         userController.updateUserById
     );
     fastify.delete(
         '/:id',
-        { ...DeleteUserSchema },
+        { preHandler: [authMiddleware], ...DeleteUserSchema },
         userController.deleteUserById
     );
 }

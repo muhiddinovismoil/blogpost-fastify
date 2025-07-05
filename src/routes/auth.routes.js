@@ -1,4 +1,5 @@
 import * as authController from '../controller/index.js';
+import { authMiddleware } from '../middleware/auth.guard.js';
 import {
     RegisterSchema,
     LoginSchema,
@@ -20,7 +21,7 @@ export default async function authRoutes(fastify, opts) {
     );
     fastify.patch(
         '/reset-password',
-        { ...ResetPassSchema },
+        { preHandler: [authMiddleware], ...ResetPassSchema },
         authController.resetPassword
     );
 }
