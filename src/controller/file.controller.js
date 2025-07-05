@@ -1,5 +1,5 @@
 import { HttpStatusCodes } from '../utils/index.js';
-import { uploadFile } from '../service/file.service';
+import { uploadFile } from '../service/file.service.js';
 
 export async function fileUpload(req, res) {
     try {

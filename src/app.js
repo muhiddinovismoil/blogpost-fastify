@@ -5,6 +5,7 @@ import fastifyStatic from '@fastify/static';
 import mainRoutes from './routes/index.js';
 import * as config from './config/index.js';
 import prismaPlugin from './plugins/db.js';
+import path from 'path';
 
 const app = Fastify(config.pinoConf);
 
