@@ -1,9 +1,9 @@
-import { HttpStatusCodes } from '../../utils/index.js';
-
 export const UploadMediaSchema = {
     schema: {
-        tags: ['Files'],
+        summary: 'Upload a file',
         consumes: ['multipart/form-data'],
+        produces: ['application/json'],
+        tags: ['Files'],
         body: {
             type: 'object',
             properties: {
@@ -16,34 +16,12 @@ export const UploadMediaSchema = {
         },
         response: {
             200: {
+                description: 'File uploaded successfully',
                 type: 'object',
                 properties: {
-                    statusCode: {
-                        type: 'integer',
-                        default: HttpStatusCodes.OK,
-                    },
                     message: { type: 'string' },
-                    data: {
-                        type: 'object',
-                        properties: {
-                            message: { type: 'string' },
-                            url: { type: 'string' },
-                            fileName: { type: 'string' },
-                        },
-                    },
-                },
-            },
-            500: {
-                type: 'object',
-                properties: {
-                    statusCode: {
-                        type: 'integer',
-                        default: HttpStatusCodes.INTERNAL_SERVER_ERROR,
-                    },
-                    message: {
-                        type: 'string',
-                        default: 'Internal Server Error',
-                    },
+                    fileName: { type: 'string' },
+                    url: { type: 'string' },
                 },
             },
         },

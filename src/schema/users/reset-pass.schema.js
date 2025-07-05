@@ -3,6 +3,8 @@ import { HttpStatusCodes } from '../../utils/index.js';
 export const ResetPassSchema = {
     schema: {
         tags: ['Auth'],
+        consumes: ['application/json'],
+        produces: ['application/json'],
         body: {
             type: 'object',
             required: ['email', 'oldPassword', 'newPassword'],

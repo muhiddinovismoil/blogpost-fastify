@@ -3,6 +3,8 @@ import { HttpStatusCodes } from '../../utils/index.js';
 export const ForgetPassSchema = {
     schema: {
         tags: ['Auth'],
+        consumes: ['application/json'],
+        produces: ['application/json'],
         security: [],
         body: {
             type: 'object',

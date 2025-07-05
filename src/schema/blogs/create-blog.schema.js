@@ -3,6 +3,8 @@ import { HttpStatusCodes } from '../../utils/index.js';
 export const CreateBlogSchema = {
     schema: {
         tags: ['Blogs'],
+        consumes: ['application/json'],
+        produces: ['application/json'],
         body: {
             type: 'object',
             required: ['title', 'subTitle', 'content'],

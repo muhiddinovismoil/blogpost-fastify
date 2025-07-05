@@ -4,6 +4,8 @@ export const RegisterSchema = {
     schema: {
         tags: ['Auth'],
         security: [],
+        consumes: ['application/json'],
+        produces: ['application/json'],
         body: {
             type: 'object',
             required: ['email', 'password'],

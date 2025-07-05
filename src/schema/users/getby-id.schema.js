@@ -3,6 +3,8 @@ import { HttpStatusCodes } from '../../utils/index.js';
 export const GetUserByIdSchema = {
     schema: {
         tags: ['Users'],
+        consumes: ['application/json'],
+        produces: ['application/json'],
         response: {
             200: {
                 type: 'object',

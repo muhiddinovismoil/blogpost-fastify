@@ -5,8 +5,6 @@ export const swaggerMainConf = {
             description: 'Blog Post Swagger',
             version: '1.0.0',
         },
-        consumes: ['application/json'],
-        produces: ['application/json'],
 
         securityDefinitions: {
             bearerAuth: {
@@ -17,7 +15,6 @@ export const swaggerMainConf = {
                     'Enter JWT token like this: **Bearer &lt;your-token&gt;**',
             },
         },
-
         security: [
             {
                 bearerAuth: [],
