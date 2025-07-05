@@ -1,7 +1,5 @@
 import { HttpStatusCodes } from '../../utils/index.js';
 
-const { OK, BAD_REQUEST, INTERNAL_SERVER_ERROR } = HttpStatusCodes;
-
 export const ForgetPassSchema = {
     schema: {
         tags: ['Auth'],
@@ -18,14 +16,20 @@ export const ForgetPassSchema = {
             200: {
                 type: 'object',
                 properties: {
-                    statusCode: { type: 'integer', default: OK },
+                    statusCode: {
+                        type: 'integer',
+                        default: HttpStatusCodes.OK,
+                    },
                     message: { type: 'string' },
                 },
             },
             400: {
                 type: 'object',
                 properties: {
-                    statusCode: { type: 'integer', default: BAD_REQUEST },
+                    statusCode: {
+                        type: 'integer',
+                        default: HttpStatusCodes.BAD_REQUEST,
+                    },
                     message: { type: 'string', default: 'Bad Request' },
                 },
             },
@@ -34,7 +38,7 @@ export const ForgetPassSchema = {
                 properties: {
                     statusCode: {
                         type: 'integer',
-                        default: INTERNAL_SERVER_ERROR,
+                        default: HttpStatusCodes.INTERNAL_SERVER_ERROR,
                     },
                     message: {
                         type: 'string',
